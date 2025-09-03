@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { calculateInvestmentResults } from './util/investment';
 import InputGroup from './components/InputGroup';
+import InvestmentResults from './components/InvestmentResults';
 
 const INITIAL_USER_INPUT = {
   initialInvestment: 0,
@@ -15,7 +16,7 @@ function App() {
 
   function handleUserInput(fieldId, newValue) {
     setUserInput(prevUserInput => {
-      const updatedUserInput = { ...prevUserInput, [fieldId]: newValue };
+      const updatedUserInput = { ...prevUserInput, [fieldId]: Number(newValue) };
 
       return updatedUserInput;
     });
@@ -53,6 +54,7 @@ function App() {
           type='number'
         />
       </div>
+      {investmentResults.length > 0 && <InvestmentResults results={investmentResults}/>}
     </main>
   )
 }

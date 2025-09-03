@@ -1,7 +1,60 @@
+import { useState } from 'react';
+import { calculateInvestmentResults } from './util/investment';
+import InputGroup from './components/InputGroup';
+
+const INITIAL_USER_INPUT = {
+  initialInvestment: 0,
+  annualInvestment: 0,
+  expectedReturn: 0,
+  duration: 0,
+};
+
 function App() {
+  const [userInput, setUserInput] = useState(INITIAL_USER_INPUT);
+  const investmentResults = calculateInvestmentResults(userInput);
+
+  function handleUserInput(fieldId, newValue) {
+    setUserInput(prevUserInput => {
+      const updatedUserInput = { ...prevUserInput, [fieldId]: newValue };
+
+      return updatedUserInput;
+    });
+  }
+
   return (
-    <main></main>
+    <main>
+      <div id="user-input" className="input-group">
+        <InputGroup
+          fieldId='initialInvestment'
+          userInput={userInput.initialInvestment}
+          handleChange={handleUserInput}
+          label='Initial Investment'
+          type='number'
+        />
+        <InputGroup
+          fieldId='annualInvestment'
+          userInput={userInput.annualInvestment}
+          handleChange={handleUserInput}
+          label='Annual Investment'
+          type='number'
+        />
+        <InputGroup
+          fieldId='expectedReturn'
+          userInput={userInput.expectedReturn}
+          handleChange={handleUserInput}
+          label='Expected Return'
+          type='number'
+        />
+        <InputGroup
+          fieldId='duration'
+          userInput={userInput.duration}
+          handleChange={handleUserInput}
+          label='Duration'
+          type='number'
+        />
+      </div>
+    </main>
   )
 }
 
-export default App
+export default App;

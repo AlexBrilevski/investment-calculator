@@ -11,9 +11,9 @@ export default function InputGroup({ fieldId, userInput, handleChange, label, ..
   }
 
   return (
-    <label>
-      {label}
+    <p>
+      <label>{label}</label>
       <input value={value} onChange={onChange} {...props} />
-    </label>
+    </p>
   );
 };

@@ -26,8 +26,8 @@ function App() {
   return (
     <>
       <Header />
-      <main>
-        <div id="user-input" className="input-group">
+      <section id="user-input">
+        <div className="input-group">
           <InputGroup
             fieldId='initialInvestment'
             userInput={userInput.initialInvestment}
@@ -42,6 +42,8 @@ function App() {
             label='Annual Investment'
             type='number'
           />
+        </div>
+        <div className="input-group">
           <InputGroup
             fieldId='expectedReturn'
             userInput={userInput.expectedReturn}
@@ -57,8 +59,8 @@ function App() {
             type='number'
           />
         </div>
-        {investmentResults.length > 0 && <InvestmentResults results={investmentResults} />}
-      </main>
+      </section>
+      {investmentResults.length > 0 && <InvestmentResults results={investmentResults} />}
     </>
   )
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { calculateInvestmentResults } from './util/investment';
+import Header from './components/Header';
 import InputGroup from './components/InputGroup';
 import InvestmentResults from './components/InvestmentResults';
 
@@ -23,39 +24,42 @@ function App() {
   }
 
   return (
-    <main>
-      <div id="user-input" className="input-group">
-        <InputGroup
-          fieldId='initialInvestment'
-          userInput={userInput.initialInvestment}
-          handleChange={handleUserInput}
-          label='Initial Investment'
-          type='number'
-        />
-        <InputGroup
-          fieldId='annualInvestment'
-          userInput={userInput.annualInvestment}
-          handleChange={handleUserInput}
-          label='Annual Investment'
-          type='number'
-        />
-        <InputGroup
-          fieldId='expectedReturn'
-          userInput={userInput.expectedReturn}
-          handleChange={handleUserInput}
-          label='Expected Return'
-          type='number'
-        />
-        <InputGroup
-          fieldId='duration'
-          userInput={userInput.duration}
-          handleChange={handleUserInput}
-          label='Duration'
-          type='number'
-        />
-      </div>
-      {investmentResults.length > 0 && <InvestmentResults results={investmentResults}/>}
-    </main>
+    <>
+      <Header />
+      <main>
+        <div id="user-input" className="input-group">
+          <InputGroup
+            fieldId='initialInvestment'
+            userInput={userInput.initialInvestment}
+            handleChange={handleUserInput}
+            label='Initial Investment'
+            type='number'
+          />
+          <InputGroup
+            fieldId='annualInvestment'
+            userInput={userInput.annualInvestment}
+            handleChange={handleUserInput}
+            label='Annual Investment'
+            type='number'
+          />
+          <InputGroup
+            fieldId='expectedReturn'
+            userInput={userInput.expectedReturn}
+            handleChange={handleUserInput}
+            label='Expected Return'
+            type='number'
+          />
+          <InputGroup
+            fieldId='duration'
+            userInput={userInput.duration}
+            handleChange={handleUserInput}
+            label='Duration'
+            type='number'
+          />
+        </div>
+        {investmentResults.length > 0 && <InvestmentResults results={investmentResults} />}
+      </main>
+    </>
   )
 }
 

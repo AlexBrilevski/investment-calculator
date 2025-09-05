@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { calculateInvestmentResults } from './util/investment';
 import Header from './components/Header';
 import InputGroup from './components/InputGroup';
 import InvestmentResults from './components/InvestmentResults';
@@ -13,7 +12,7 @@ const INITIAL_USER_INPUT = {
 
 function App() {
   const [userInput, setUserInput] = useState(INITIAL_USER_INPUT);
-  const investmentResults = calculateInvestmentResults(userInput);
+  const isInputValid = userInput.duration >= 1;
 
   function handleUserInput(fieldId, newValue) {
     setUserInput(prevUserInput => {
@@ -60,7 +59,8 @@ function App() {
           />
         </div>
       </section>
-      {investmentResults.length > 0 && <InvestmentResults results={investmentResults} />}
+      {!isInputValid && <p className="center">Please enter a duration greater than zero.</p>}
+      {isInputValid && <InvestmentResults userInput={userInput} />}
     </>
   )
 }
